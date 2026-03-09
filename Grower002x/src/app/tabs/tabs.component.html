@@ -1,0 +1,64 @@
+<button
+  style="float: left"
+  (click)="exportToExcel()"
+  soho-button="icon"
+  icon="export"
+  title="Export to Excel"
+></button>
+
+<div
+  style="margin-top: 30px; height: 700px"
+  #NonPackedoutDataGrid
+  id="nonPackedOutDataGrid"
+  soho-datagrid
+  soho-busyindicator
+  [activated]="isBusy"
+  [blockUI]="false"
+  [displayDelay]="0"
+  [gridOptions]="datagridOptions02"
+  (selected)="onSelected01($event.rows)"
+  (cellchange)="onCellChange01($event)"
+></div>
+
+<style>
+  /* Just remove bulky background from tab header area */
+  .tab-container {
+    background-color: transparent;
+    padding: 0;
+    border-bottom: 1px solid #dcdcdc;
+  }
+
+  /* Style the grid panel container */
+  .grid-panel {
+    margin-top: 1.5rem;
+    height: 600px;
+    border: 1px solid #d8d8d8;
+    border-radius: 4px;
+    background-color: #fff;
+    padding: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  :host ::ng-deep .datagrid-header {
+    background-color: #f3f3f3;
+  }
+
+  :host ::ng-deep .datagrid-row:nth-child(even) {
+    background-color: #fcfcfc;
+  }
+
+  :host ::ng-deep .datagrid-header-cell,
+  :host ::ng-deep .datagrid-cell {
+    font-size: 12px !important;
+    padding-top: 4px !important;
+    padding-bottom: 4px !important;
+  }
+
+  :host ::ng-deep .datagrid-row:hover {
+    background-color: #eef3f8;
+  }
+
+  :host ::ng-deep .datagrid-row {
+    border-bottom: 1px solid #e0e0e0;
+  }
+</style>
