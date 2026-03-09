@@ -1,0 +1,22 @@
+<div style="height: 48px; display: flex; align-items: center; padding-left: 10px;">
+  <select
+    soho-dropdown
+    soho-busyindicator
+    name="warehouse"
+    placeholder="Warehouse:"
+    (change)="onChange($event)"
+    [(ngModel)]="supplier"
+    style="
+      width: 350px;
+      font-size: 20px;
+      font-weight: 600;
+      padding: 6px 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      cursor: pointer;
+    "
+  >
+    <option *ngFor="let option of options" [value]="option.value">{{option.label}}</option>
+  </select>
+</div>
