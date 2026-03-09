@@ -1,0 +1,403 @@
+<!-- Initial grid that shows as soon as datagrid record is selected -->
+
+<div style="width: 100%; height: 100%; overflow: scroll">
+  <div>
+    <div style="margin-top: 5px" class="twelve columns">
+      <div class="four columns">
+     <!--     <app-receiptdate></app-receiptdate>
+         <app-warehouse></app-warehouse>
+        <app-supplier></app-supplier>  -->
+
+
+
+        <div style="margin-top: 10px">
+          <label style="margin-left: 20px" soho-label for="itemno"
+            >Item No:<span
+              ><input
+                readonly
+                autocomplete="doNotAutoComplete"
+                style="font-weight: bold; margin-left: 18px; width: 170px"
+                (change)="onChangeEvent01($event)"
+                soho-field-options
+                name="itemno-lookup"
+                [(ngModel)]="iITNO"
+                type="text"
+            /></span>
+
+            <span style="margin-left: 5px">{{ oITDS }}</span>
+          </label>
+
+          <label style="margin-left: -9px" soho-label for="socode"
+            >Lot Number:<span
+              ><input
+                readonly
+                style="font-weight: bold; margin-left: 20px; width: 170px"
+                autocomplete="doNotAutoComplete"
+                oninput="this.value = this.value.toUpperCase()"
+                (change)="cCFI3($event)"
+                [(ngModel)]="iBANO"
+                soho-field-options
+                name="product-lookup"
+                type="text"
+            /></span>
+            <button
+              style="margin-left: 15px"
+              (click)="update_attr()"
+              soho-button="secondary"
+              title="New"
+            >
+              update attributes
+            </button>
+          </label>
+          <label style="margin-left: -16px" soho-label for="itemname"
+            >Qty Received:<span
+              ><input
+                autocomplete="doNotAutoComplete"
+                readonly
+                style="
+                  font-weight: bold;
+                  margin-left: 20px;
+                  width: 170px;
+                  text-transform: uppercase;
+                "
+                (change)="cITDS($event)"
+                [(ngModel)]="iRVQA"
+                soho-field-options
+                name="itemname-lookup"
+                oninput="this.value = this.value.toUpperCase()"
+                type="text"
+            /></span>
+          </label>
+
+          <label style="margin-left: -10px" soho-label for="basicum"
+            >Settled Qty:<span
+              ><input
+                readonly
+                style="font-weight: bold; margin-left: 26px; width: 170px"
+                autocomplete="doNotAutoComplete"
+                (change)="cUNMS($event)"
+                [(ngModel)]="iCSETT"
+                maxlength="3"
+                soho-field-options
+                name="basicum-lookup"
+                type="text"
+            /></span>
+          </label>
+
+          <label soho-label for="itemname" style="margin-left: -27px"
+            >Assigned Price:<span
+              ><input
+                autocomplete="doNotAutoComplete"
+                readonly
+                style="
+                  font-weight: bold;
+                  margin-left: 20px;
+                  width: 170px;
+                  text-transform: uppercase;
+                "
+                (change)="cITDS($event)"
+                [(ngModel)]="iAPRICE"
+                soho-field-options
+                name="itemname-lookup"
+                oninput="this.value = this.value.toUpperCase()"
+                type="text"
+            /><input
+                autocomplete="doNotAutoComplete"
+                readonly
+                style="
+                  font-weight: bold;
+                  margin-left: 20px;
+                  width: 110px;
+                  text-transform: uppercase;
+                "
+                [(ngModel)]="iPVAR"
+                soho-field-options
+                name="itemname-lookup"
+                oninput="this.value = this.value.toUpperCase()"
+                type="text"
+            /></span>
+          </label>
+
+          <label style="margin-left: -30px" soho-label for="basicum"
+            >Status Self-Bill:<span
+              ><input
+                readonly
+                style="font-weight: bold; margin-left: 24px; width: 300px"
+                autocomplete="doNotAutoComplete"
+                (change)="cUNMS($event)"
+                [(ngModel)]="iFGTP"
+                maxlength="3"
+                name="basicum-lookup"
+                type="text"
+            /></span>
+          </label>
+        </div>
+      </div>
+
+
+
+      <div style="float: right" class="two columns">
+        <p>
+          Company:&nbsp;{{ curcono }}&nbsp;&nbsp;Division:&nbsp;{{ curdivi }}
+        </p>
+        <button
+          style="float: right"
+          (click)="itm_refresh()"
+          soho-button="icon"
+          icon="refresh"
+          title="Refresh"
+        ></button>
+      </div>
+
+       <div>
+       
+      </div>
+
+      <div style="margin-left:70px;margin-top:-50px" class="six columns">
+        <div>
+          <label style="margin-left: 120px; font-weight: bold"
+            >End Products<span style="margin-left: 50px">Over Sized</span
+            ><span style="margin-left: 80px">Under Sized</span></label
+          >
+
+          <label style="margin-left: 0px" soho-label for="itemname"
+            >Calculated Qty:<span
+              ><input
+                autocomplete="doNotAutoComplete"
+                style="
+                  font-weight: bold;
+                  margin-left: 20px;
+                  text-align:right;
+                  width: 100px;
+                  text-transform: uppercase;
+                "
+                readonly
+                (change)="cSETQTY($event)"
+                [(ngModel)]="iPACKEDBS2"
+                name="itemname-lookup"
+                oninput="this.value = this.value.toUpperCase()"
+                type="text" /></span
+            ><input
+              autocomplete="doNotAutoComplete"
+              style="
+                font-weight: bold;
+                margin-left: 40px;
+                text-align: right;
+                width: 100px;
+                text-transform: uppercase;
+              "
+              (change)="cOVQTY($event)"
+              [(ngModel)]="iOVER"
+              name="itemname-lookup"
+              oninput="this.value = this.value.toUpperCase()"
+              type="text"
+            /><span
+              ><input
+                autocomplete="doNotAutoComplete"
+                style="
+                  font-weight: bold;
+                  margin-left: 50px;
+                  text-align: right;
+                  width: 100px;
+                  text-transform: uppercase;
+                "
+                (change)="cUNQTY($event)"
+                [(ngModel)]="iUNDER"
+                name="itemname-lookup"
+                oninput="this.value = this.value.toUpperCase()"
+                type="text"
+            /></span>
+          </label>
+
+          <label style="margin-left: 1px" soho-label for="itemname"
+            >Assigned Price:<span
+              ><input
+                autocomplete="doNotAutoComplete"
+                style="
+                  font-weight: bold;
+                  margin-left: 20px;
+                  width: 100px;
+                  text-align:right;
+                  text-transform: uppercase;
+                "
+                readonly
+                (change)="cSETQTY($event)"
+                [(ngModel)]="iAssignedP"
+                name="itemname-lookup"
+                oninput="this.value = this.value.toUpperCase()"
+                type="number" /></span
+            ><input
+              autocomplete="doNotAutoComplete"
+              style="
+                font-weight: bold;
+                margin-left: 40px;
+                text-align: right;
+                width: 100px;
+                text-transform: uppercase;
+              "
+            (keydown.enter)="cSETPOVER($event)"
+              [(ngModel)]="iAssignedPOver"
+              name="itemname-lookup"
+
+              type="number"
+            /><span
+              ><input
+                autocomplete="doNotAutoComplete"
+                style="
+                  font-weight: bold;
+                  margin-left: 50px;
+                  width: 100px;
+                  text-align:right;
+                  text-transform: uppercase;
+                "
+                (keydown.enter)="cSETPUNDER($event)"
+                [(ngModel)]="iAssignedPUnder"
+                name="itemname-lookup"
+
+                type="number"
+            /></span>
+          </label>
+
+            <label style="margin-left: -16px" soho-label for="itemname"
+            >Current GR Value:<span
+              ><input
+                readonly
+                autocomplete="doNotAutoComplete"
+                style="
+                  font-weight: bold;
+                  margin-left: 20px;
+                  width: 100px;
+                  text-align:right;
+                  text-transform: uppercase;
+
+                "
+                (keyup.enter)="GRVALP()"
+                [(ngModel)]="iCALCINV"
+                name="itemname-lookup"
+                oninput="this.value = this.value.toUpperCase()"
+                type="number"
+            /></span>
+          </label>
+
+          <label style="margin-left: -46px" soho-label for="itemname"
+            >Overwrite Settled Qty:<span
+              ><input
+                autocomplete="doNotAutoComplete"
+                style="
+                  font-weight: bold;
+                  margin-left: 20px;
+                  width: 100px;
+                  text-align:right;
+                  text-transform: uppercase;
+                  background-color: #f2f2e1;
+                "
+                (change)="cSETQTY($event)"
+                [(ngModel)]="iSETQTY"
+                name="itemname-lookup"
+                oninput="this.value = this.value.toUpperCase()"
+                type="text"
+            /></span>
+          </label>
+
+          <label style="margin-left: 30px" soho-label for="itemname"
+            >Threshold:<span
+              ><input
+                autocomplete="doNotAutoComplete"
+                style="
+                  font-weight: bold;
+                  margin-left: 20px;
+                  width: 100px;
+                  text-align:right;
+                  text-transform: uppercase;
+                  background-color: #f2f2e1;
+                "
+                (change)="cTHRES($event)"
+                [(ngModel)]="iTHRES"
+                name="itemname-lookup"
+                oninput="this.value = this.value.toUpperCase()"
+                type="text"
+            /></span>
+          </label>
+
+
+
+          <label style="margin-left: -29px;margin-top:30px;font-weight:bold" soho-label for="itemname"
+            >Projected GR Value:<span
+              ><input
+                autocomplete="doNotAutoComplete"
+                readonly
+                style="
+                  font-weight: bold;
+                  margin-left: 20px;
+                  text-align:right;
+                  width: 100px;
+                  background-color: #ffe5e5;
+                  text-transform: uppercase;
+                "
+                [(ngModel)]="iPVAL"
+                name="itemname-lookup"
+                oninput="this.value = this.value.toUpperCase()"
+                type="text" /><span
+                ><input
+                  autocomplete="doNotAutoComplete"
+                  style="
+                    font-weight: bold;
+                    margin-left: 40px;
+                    width: 100px;
+                    text-align:right;
+                     background-color: #ffe5e5;
+                    text-transform: uppercase;
+                  "
+                  (change)="cSwETQTY($event)"
+                  [(ngModel)]="ioverq"
+                  name="itemname-lookup"
+                  oninput="this.value = this.value.toUpperCase()"
+                  type="number" /></span
+              ><span
+                ><input
+                  autocomplete="doNotAutoComplete"
+                  style="
+                    font-weight: bold;
+                    margin-left: 50px;
+                    width: 100px;
+                    text-align:right;
+                     background-color: #ffe5e5;
+                    text-transform: uppercase;
+                  "
+                  (change)="cSEAQTY($event)"
+                  [(ngModel)]="iunderq"
+                  name="itemname-lookup"
+                  oninput="this.value = this.value.toUpperCase()"
+                  type="number" /></span
+            ></span>
+          </label>
+
+          <label style="margin-left: -49px;margin-top:10px;font-weight:bold" soho-label for="itemname"
+            >Projected GR Variance:<span
+              ><input
+                autocomplete="doNotAutoComplete"
+                readonly
+                style="
+                  font-weight: bold;
+                  margin-left: 20px;
+                  text-align:right;
+                  width: 100px;
+                  background-color: #ffe5e5;
+                  text-transform: uppercase;
+                "
+                [(ngModel)]="iGRVAR"
+                name="itemname-lookup"
+                oninput="this.value = this.value.toUpperCase()"
+                type="text" /></span>
+          </label>
+
+
+        </div>
+      </div>
+    </div>
+
+    <!--  tabs to filter grower returns record in various categories -->
+
+    <app-tabs></app-tabs>
+  </div>
+</div>
